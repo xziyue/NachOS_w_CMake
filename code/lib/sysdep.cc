@@ -91,7 +91,7 @@ int mprotect(char *, unsigned int, int);
 int select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
              struct timeval *timeout);
 #else
-int select(int numBits, void *readFds, void *writeFds, void *exceptFds, 
+int select(int numBits, void *readFds, void *writeFds, void *exceptFds,
 	struct timeval *timeout);
 #endif
 

@@ -1,10 +1,13 @@
+set(CMAKE_LEGACY_CYGWIN_WIN32 1)
 project(NachOS CXX)
+cmake_minimum_required(VERSION 3.0.0)
 enable_language(CXX ASM)
-cmake_minimum_required(VERSION 3.0)
+
+
 
 # this is just an effort to provide IDE support for NachOS
 # being able to compile NachOS with this cmake configuration
-# DOES NOT NECESSARILY MEANs THAT IT COMPILES WITH THE ORIGINAL MAKEFILE!
+# DOES NOT NECESSARILY MEANS THAT IT COMPILES WITH THE ORIGINAL MAKEFILE!
 # please double check if it is compatible with the original settings
 
 # SOME MORE HINTS:
@@ -35,15 +38,21 @@ if(APPLE)
     set(KNOWN_OS TRUE)
     #set(NACHOS_64 TRUE)
 else()
-    if(UNIX)
-        message(STATUS "unix detected")
+    if(CYGWIN)
+        message(STATUS "cygwin detected")
         add_definitions(-DLINUX)
         set(KNOWN_OS TRUE)
+    else()
+        if(UNIX)
+            message(STATUS "unix detected")
+            add_definitions(-DLINUX)
+            set(KNOWN_OS TRUE)
+        endif()
     endif()
 endif()
 
 if(NOT KNOWN_OS)
-    #message(SEND_ERROR "An unknown operating system encountered!")
+    message(SEND_ERROR "An unknown operating system encountered!")
 endif()
 
 if(NOT NACHOS_64)
@@ -123,7 +132,6 @@ add_library(NACHOS_DEPEND ${NACHOS_HEADERS} ${LIB_SRC}  ${MACHINE_SRC}
          ${FILESYS_SRC}  ${NETWORK_SRC}
         ${ASM_SWITCH}
         )
-
 
 set(NACHOS_ENTRANCE_SRC ${PROJECT_SOURCE_DIR}/threads/main.cc)
 

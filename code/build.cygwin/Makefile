@@ -205,8 +205,8 @@ LDFLAGS =
 
 #####################################################################
 CPP= cpp
-CC = g++
-LD = g++
+CC = D:/cygwin64/bin/i686-pc-cygwin-g++.exe
+LD =  D:/cygwin64/bin/i686-pc-cygwin-g++.exe
 AS = as
 RM = rm
 
