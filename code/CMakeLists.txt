@@ -1,4 +1,4 @@
-project(NachOS)
+project(NachOS CXX)
 enable_language(CXX ASM)
 cmake_minimum_required(VERSION 3.0)
 
@@ -31,9 +31,9 @@ set(NACHOS_64 FALSE)
 
 if(APPLE)
     message(STATUS "osx detected")
-    add_definitions(-DBSD)
+    add_definitions(-DLINUX -DAPPLE_OSX)
     set(KNOWN_OS TRUE)
-    set(NACHOS_64 TRUE)
+    #set(NACHOS_64 TRUE)
 else()
     if(UNIX)
         message(STATUS "unix detected")
@@ -49,6 +49,7 @@ endif()
 if(NOT NACHOS_64)
     message(STATUS "building 32-bit NachOS")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
+    set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -m32")
 else()
     message(STATUS "building 64-bit NachOS")
 endif()
@@ -57,10 +58,10 @@ endif()
 set(CMAKE_BUILD_TYPE DEBUG)
 
 # I think these two flags should be already set by cmake
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -g -Wall ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall ")
 
 # just to conform with the make rule of switch.S
-set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -P -m32")
+set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -P")
 
 # just to make life easier
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-write-strings -Wno-char-subscripts")
