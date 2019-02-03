@@ -51,7 +51,7 @@ Luckily, I succesfully compile NachOS on Windows. (Take a look at the ugly comma
 
 
 However, this solution on Windows is not perfect:
-1. Clion seems to work poorly with Cygwin (it works pretty well with MinGW though). Although I can compile the program and run it via Windows Explorer, I cannot run the program properly inside CLion.
+1. CLion seems to work poorly with Cygwin (it works pretty well with MinGW though). Although I can compile the program and run it via Windows Explorer, I cannot run the program properly inside CLion.
 2. The gdb bundled by Cygwin seems to be malfunctioning. 
 
 Nonetheless, we can finally work on Windows locally. Remember that if your program crashes in CLion, always run it from Windows Explorer to see what the problem is. Usually it is a missing DLL problem.
