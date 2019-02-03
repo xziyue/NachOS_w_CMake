@@ -41,7 +41,7 @@
 #endif
 
 #ifdef LINUX	 // at this point, linux doesn't support mprotect 
-#define NO_MPROT
+#define NO_MPROT     
 #endif
 #ifdef DOS	// neither does DOS
 #define NO_MPROT
@@ -55,7 +55,8 @@ extern "C" {
 #include <sys/mman.h>
 #endif
 
-// UNIX routines called by procedures in this file
+// UNIX routines called by procedures in this file 
+
 #if defined CYGWIN
   size_t getpagesize(void);
 #else
@@ -91,7 +92,7 @@ int mprotect(char *, unsigned int, int);
 int select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
              struct timeval *timeout);
 #else
-int select(int numBits, void *readFds, void *writeFds, void *exceptFds,
+int select(int numBits, void *readFds, void *writeFds, void *exceptFds, 
 	struct timeval *timeout);
 #endif
 

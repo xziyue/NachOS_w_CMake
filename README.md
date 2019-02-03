@@ -55,7 +55,9 @@ However, this solution on Windows is not perfect:
 2. The gdb bundled by Cygwin seems to be malfunctioning. 
 
 Nonetheless, we can finally work on Windows locally. Remember that if your program crashes in CLion, always run it from Windows Explorer to see what the problem is. Usually it is a missing DLL problem.
+- [x] g++ (Ubuntu 5.4.0-6ubuntu1~16.04.11) 5.4.0 20160609
 
+**Passed compilation on the remote machine**
 - [x] g++ (Ubuntu 7.3.0-27ubuntu1~18.04) 7.3.0
 - [ ] g++ Apple LLVM version 10.0.0 (clang-1000.10.44.4)
 
