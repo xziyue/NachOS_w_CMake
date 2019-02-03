@@ -43,7 +43,7 @@ else()
 endif()
 
 if(NOT KNOWN_OS)
-    message(SEND_ERROR "An unknown operating system encountered!")
+    #message(SEND_ERROR "An unknown operating system encountered!")
 endif()
 
 if(NOT NACHOS_64)
