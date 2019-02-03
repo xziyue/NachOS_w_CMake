@@ -1,4 +1,5 @@
 ## Test on different OS
+- [x] g++ (Ubuntu 7.3.0-27ubuntu1~18.04) 7.3.0
 - [ ] g++ Apple LLVM version 10.0.0 (clang-1000.10.44.4)
 
 **(Failed)** Due to the fact that Apple no longer provides i386 support. However, it is non-trivial to adapt NachOS for 64-bit mode. If someone's Apple compiler still supports 32-bit mode, please inform me the compilation results.
