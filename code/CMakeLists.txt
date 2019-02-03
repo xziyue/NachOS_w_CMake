@@ -1,6 +1,6 @@
 project(NachOS)
 enable_language(CXX ASM)
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.0)
 
 # this is just an effort to provide IDE support for NachOS
 # being able to compile NachOS with this cmake configuration
@@ -12,6 +12,46 @@ cmake_minimum_required(VERSION 3.13)
 # the build directories will be different, make sure to clean them up before submitting
 
 # USE AT YOUR OWN RISK!
+
+
+# define some system-dependent macros
+# to correspond with the macros in ~/lib/sysdep.cc
+
+message(STATUS "your processor is ${CMAKE_SYSTEM_PROCESSOR}")
+if(NOT (${CMAKE_SYSTEM_PROCESSOR} MATCHES "(x86)|(X86)|(amd64)|(AMD64)"))
+    message(SEND_ERROR "only x86 architecture is supported in this config!")
+else()
+    add_definitions(-Dx86)
+endif()
+
+set(KNOWN_OS FALSE)
+# whether to build in 64-bit mode
+# for apple, this is true because 32-bit architecture is deprecated
+set(NACHOS_64 FALSE)
+
+if(APPLE)
+    message(STATUS "osx detected")
+    add_definitions(-DBSD)
+    set(KNOWN_OS TRUE)
+    set(NACHOS_64 TRUE)
+else()
+    if(UNIX)
+        message(STATUS "unix detected")
+        add_definitions(-DLINUX)
+        set(KNOWN_OS TRUE)
+    endif()
+endif()
+
+if(NOT KNOWN_OS)
+    message(SEND_ERROR "An unknown operating system encountered!")
+endif()
+
+if(NOT NACHOS_64)
+    message(STATUS "building 32-bit NachOS")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
+else()
+    message(STATUS "building 64-bit NachOS")
+endif()
 
 # make sure to always compile in debug mode without any optimization
 set(CMAKE_BUILD_TYPE DEBUG)
@@ -43,34 +83,6 @@ include_directories(${PROJECT_SOURCE_DIR}/filesys
         ${PROJECT_SOURCE_DIR}/threads
         ${PROJECT_SOURCE_DIR}/userprog)
 
-
-# define some system-dependent macros
-# to correspond with the macros in ~/lib/sysdep.cc
-
-message(STATUS "your processor is ${CMAKE_SYSTEM_PROCESSOR}")
-if(NOT (${CMAKE_SYSTEM_PROCESSOR} MATCHES "(x86)|(X86)|(amd64)|(AMD64)"))
-    message(SEND_ERROR "only x86 architecture is supported in this config!")
-else()
-    add_definitions(-Dx86)
-endif()
-
-set(KNOWN_OS FALSE)
-
-if(UNIX)
-    message(STATUS "unix detected")
-    add_definitions(-DLINUX)
-    set(KNOWN_OS TRUE)
-endif()
-
-if(APPLE)
-    message(STATUS "osx detected")
-    add_definitions(-DBSD)
-    set(KNOWN_OS TRUE)
-endif()
-
-if(NOT KNOWN_OS)
-    message(SEND_ERROR "An unknown operating system encountered!")
-endif()
 
 # I am using file commands intensively, so if one wants to add some new files to the project, make sure to reload cmake
 file(GLOB LIB_INC ${PROJECT_SOURCE_DIR}/lib/*.h)
