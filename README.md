@@ -7,7 +7,7 @@
 - On the remote server, navigate to ```/usr/local/nachos```, download the entire folder to your local computer
 - Copy the ```nachos``` folder into your ```/usr/local/``` folder (this has to be done with command line because it needs high privilege)
 - Change the ownership of the files, for example, you can use ```sudo chown -R <NAME OF YOUR ACCOUNT>:<NAME OF YOUR ACCOUNT> /usr/local/nachos ```
-- You can now open the folder in GUI, with the command ```xdg-open /usr/local/nachos```. The GUI allows us to modify file permission with ease, just right click the files (one can select multiple files) and select "Properties" in the context menu. Tick "Allow executing file as program" in the "Permissions" tab.
+- You can now open the folder in GUI, with the command ```xdg-open /usr/local/nachos```. The GUI allows us to modify file permission with ease. Just right click the files (one can select multiple files) and select "Properties" in the context menu. Tick "Allow executing file as program" in the "Permissions" tab.
 -  Add execute permission for the files without extension (i.e. excitable files) in:
 	- ```/usr/local/nachos/bin```
 	- ```/usr/local/nachos/decstation-ultrix/bin```
