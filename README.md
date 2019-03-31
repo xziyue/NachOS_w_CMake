@@ -1,8 +1,22 @@
 ## Remember, always check your compilation results with the original Makefiles!
 # USE AT YOUR OWN RISK!
 
+## (Update) How to Compile Test Programs on Your Own Computer
+
+- Use a file transfer software (such as [FileZilla](https://filezilla-project.org/)) to login the remote server. Make sure that the protocol is sftp, that is, the URL should be something like ```sftp://lcs-vc-cis486.syr.edu```
+- On the remote server, navigate to ```/usr/local/nachos```, download the entire folder to your local computer
+- Copy the ```nachos``` folder into your ```/usr/local/``` folder (this has to be done with command line because it needs high privilege)
+- Change the ownership of the files, for example, you can use ```sudo chown -R <NAME OF YOUR ACCOUNT>:<NAME OF YOUR ACCOUNT> /usr/local/nachos ```
+- You can now open the folder in GUI, with the command ```xdg-open /usr/local/nachos```. The GUI allows us to modify file permission with ease, just right click the files (one can select multiple files) and select "Properties" in the context menu. Tick "Allow executing file as program" in the "Permissions" tab.
+-  Add execute permission for the files without extension (i.e. excitable files) in:
+  - ```/usr/local/nachos/bin```
+  - ```/usr/local/nachos/decstation-ultrix/bin```
+  - ```/usr/local/nachos/lib/gcc-lib/decstation-ultrix/2.95.2```
+
+- Now you should be able to cross compile MIPS programs on your local computer! Enjoy!
 
 ## What is this repo?
+
 It is essentially the original NachOS files (with some small modifications, which are listed below) provided on Blackboard, plus a ```CMakeLists.txt``` - a CMake configuration for NachOS.
 
 ## Why CMake?
